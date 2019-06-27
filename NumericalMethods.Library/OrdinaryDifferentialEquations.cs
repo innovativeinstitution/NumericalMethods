@@ -11,14 +11,14 @@ namespace NumericalMethods.Library
             int iterations,
             double tEnd)
         {
-            Func<double, double, double> f = function;
-            int n = iterations;
-            double tn = tEnd;
-            double h = (tn - t0) / n;
-            int i = 0;
+            var f = function;
+            var n = iterations;
+            var tn = tEnd;
+            var h = (tn - t0) / n;
+            var i = 0;
             double yn = 0;
 
-            double[] results = new double[n + 1];
+            var results = new double[n + 1];
             results[0] = y0;
 
             do
@@ -27,7 +27,6 @@ namespace NumericalMethods.Library
                 y0 = yn;
                 i++;
                 results[i] = yn;
-
             } while (i < n);
 
             return results;
@@ -40,29 +39,28 @@ namespace NumericalMethods.Library
             int iterations,
             double tEnd)
         {
-            Func<double, double, double> f = function;
-            int n = iterations;
-            double tn = tEnd;
-            double h = (tn - t0) / n;
-            int i = 0;
+            var f = function;
+            var n = iterations;
+            var tn = tEnd;
+            var h = (tn - t0) / n;
+            var i = 0;
             double yn = 0;
 
-            double[] results = new double[n + 1];
+            var results = new double[n + 1];
             results[0] = y0;
 
             do
             {
-                double k1 = h * f(t0, y0);
-                double k2 = h * f(t0 + h / 2, y0 + k1 / 2);
-                double k3 = h * f(t0 + h / 2, y0 + k2 / 2);
-                double k4 = h * f(t0 + h, y0 + k3);
-                double k = (k1 + 2 * k2 + 2 * k3 + k4) / 6;
+                var k1 = h * f(t0, y0);
+                var k2 = h * f(t0 + h / 2, y0 + k1 / 2);
+                var k3 = h * f(t0 + h / 2, y0 + k2 / 2);
+                var k4 = h * f(t0 + h, y0 + k3);
+                var k = (k1 + 2 * k2 + 2 * k3 + k4) / 6;
                 yn = y0 + k;
                 i++;
                 t0 += h;
                 y0 = yn;
                 results[i] = yn;
-
             } while (i < n);
 
             return results;

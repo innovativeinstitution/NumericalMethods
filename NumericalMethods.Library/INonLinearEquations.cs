@@ -9,14 +9,14 @@ namespace NumericalMethods.Library
             double lower,
             double upper,
             double error
-            );
+        );
 
         double? ExecuteRegulaFalsiMethod(
             Func<double, double> function,
             double lower,
             double upper,
             double error
-            );
+        );
 
         double? ExecuteSecantMethod(
             Func<double, double> function,
@@ -24,7 +24,7 @@ namespace NumericalMethods.Library
             double upper,
             double error,
             int iterations
-            );
+        );
 
         double? ExecuteNewtonRaphsonMethod(
             Func<double, double> function,
@@ -32,6 +32,6 @@ namespace NumericalMethods.Library
             double initialGuess,
             double error,
             int iterations
-            );
+        );
     }
 }

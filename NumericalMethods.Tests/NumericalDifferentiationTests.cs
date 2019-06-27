@@ -1,13 +1,13 @@
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NumericalMethods.Library;
-using System;
 
 namespace NumericalMethods.Tests
 {
     [TestClass]
     public class NumericalDifferentiationTests
     {
-        NumericalDifferentiation library;
+        private NumericalDifferentiation library;
 
         [TestInitialize]
         public void TestInitialize()
@@ -19,7 +19,7 @@ namespace NumericalMethods.Tests
         public void Test_BackwardDifferenceMethod()
         {
             Func<double, double> f = x => Math.Pow(x, 2);
-            double? derivative = library.ExecuteBackwardDifference(f, 2.0, 0.001);
+            var derivative = library.ExecuteBackwardDifference(f, 2.0, 0.001);
 
             double? expected = 4.0;
 
@@ -31,7 +31,7 @@ namespace NumericalMethods.Tests
         public void Test_ForwardDifferenceMethod()
         {
             Func<double, double> f = x => Math.Pow(x, 2);
-            double? derivative = library.ExecuteForwardDifference(f, 2.0, 0.001);
+            var derivative = library.ExecuteForwardDifference(f, 2.0, 0.001);
 
             double? expected = 4.0;
 
@@ -43,7 +43,7 @@ namespace NumericalMethods.Tests
         public void Test_CentralDifferenceMethod()
         {
             Func<double, double> f = x => Math.Pow(x, 2);
-            double? derivative = library.ExecuteCentralDifference(f, 2.0, 0.001);
+            var derivative = library.ExecuteCentralDifference(f, 2.0, 0.001);
 
             double? expected = 4.0;
 

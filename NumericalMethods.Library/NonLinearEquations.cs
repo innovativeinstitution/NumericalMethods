@@ -10,12 +10,12 @@ namespace NumericalMethods.Library
             double upper,
             double error)
         {
-            Func<double, double> f = function;
-            double x0 = lower;
-            double x1 = upper;
-            double err = error;
+            var f = function;
+            var x0 = lower;
+            var x1 = upper;
+            var err = error;
 
-            bool Converged = false;
+            var Converged = false;
             double x2;
 
             do
@@ -28,13 +28,11 @@ namespace NumericalMethods.Library
                     x0 = x2;
 
                 Converged = Math.Abs(f(x2)) <= err;
-
             } while (!Converged);
 
             if (Converged)
                 return x2;
-            else
-                return null;
+            return null;
         }
 
         public double? ExecuteRegulaFalsiMethod(
@@ -43,17 +41,17 @@ namespace NumericalMethods.Library
             double upper,
             double error)
         {
-            Func<double, double> f = function;
-            double x0 = lower;
-            double x1 = upper;
-            double err = error;
+            var f = function;
+            var x0 = lower;
+            var x1 = upper;
+            var err = error;
 
-            bool Converged = false;
+            var Converged = false;
             double x2;
 
             do
             {
-                x2 = x0 - ((x0 - x1) * f(x0)) / (f(x0) - f(x1));
+                x2 = x0 - (x0 - x1) * f(x0) / (f(x0) - f(x1));
 
                 if (f(x0) * f(x2) < 0)
                     x1 = x2;
@@ -61,13 +59,11 @@ namespace NumericalMethods.Library
                     x0 = x2;
 
                 Converged = Math.Abs(f(x2)) <= err;
-
             } while (!Converged);
 
             if (Converged)
                 return x2;
-            else
-                return null;
+            return null;
         }
 
         public double? ExecuteSecantMethod(
@@ -77,22 +73,19 @@ namespace NumericalMethods.Library
             double error,
             int iterations)
         {
-            Func<double, double> f = function;
-            double x0 = lower;
-            double x1 = upper;
-            double err = error;
-            int N = iterations;
+            var f = function;
+            var x0 = lower;
+            var x1 = upper;
+            var err = error;
+            var N = iterations;
 
-            bool Converged = false;
-            int i = 1;
+            var Converged = false;
+            var i = 1;
             double x2 = 0;
 
             do
             {
-                if (f(x0) == f(x1))
-                {
-                    return null;
-                }
+                if (f(x0) == f(x1)) return null;
 
                 x2 = x1 - (x1 - x0) * f(x1) / (f(x1) - f(x0));
                 x0 = x1;
@@ -100,19 +93,14 @@ namespace NumericalMethods.Library
 
                 i++;
 
-                if (i > N)
-                {
-                    return null;
-                }
+                if (i > N) return null;
 
                 Converged = Math.Abs(f(x2)) <= err;
-
             } while (!Converged);
 
             if (Converged)
                 return x2;
-            else
-                return null;
+            return null;
         }
 
         public double? ExecuteNewtonRaphsonMethod(
@@ -122,42 +110,34 @@ namespace NumericalMethods.Library
             double error,
             int iterations)
         {
-            Func<double, double> f = function;
-            Func<double, double> g = derivative;
+            var f = function;
+            var g = derivative;
 
-            double x0 = initialGuess;
-            double err = error;
-            int N = iterations;
+            var x0 = initialGuess;
+            var err = error;
+            var N = iterations;
 
-            bool Converged = false;
-            int i = 1;
+            var Converged = false;
+            var i = 1;
             double x1 = 0;
 
             do
             {
-                if (g(x0) == 0)
-                {
-                    return null;
-                }
+                if (g(x0) == 0) return null;
 
                 x1 = x0 - f(x0) / g(x0);
                 x0 = x1;
 
                 i++;
 
-                if (i > N)
-                {
-                    return null;
-                }
+                if (i > N) return null;
 
                 Converged = Math.Abs(f(x1)) <= err;
-
             } while (!Converged);
 
             if (Converged)
                 return x1;
-            else
-                return null;
+            return null;
         }
     }
 }

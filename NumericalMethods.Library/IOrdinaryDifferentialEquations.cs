@@ -10,7 +10,7 @@ namespace NumericalMethods.Library
             double y0,
             int iterations,
             double tEnd
-            );
+        );
 
         double[] ExecuteRungeKuttaMethod(
             Func<double, double, double> function,
@@ -18,6 +18,6 @@ namespace NumericalMethods.Library
             double y0,
             int iterations,
             double tEnd
-            );
+        );
     }
 }
